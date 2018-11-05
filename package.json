@@ -1,6 +1,6 @@
 {
   "name": "ember-current-url",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
@@ -13,16 +13,20 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build",
+    "build": "rollup -c",
     "lint:js": "eslint ./*.js addon addon-test-support app blueprints config lib server test-support tests",
     "start": "ember serve",
     "test": "ember test",
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.6.0"
+    "ember-cli-babel": "^6.6.0",
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.1.4",
@@ -45,7 +49,9 @@
     "ember-try": "^0.2.23",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^6.0.1",
-    "loader.js": "^4.2.3"
+    "loader.js": "^4.2.3",
+    "rollup": "^0.67.0",
+    "rollup-plugin-babel": "^4.0.3"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
