@@ -13,7 +13,9 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run build:dist && npm run build:ember",
+    "build:dist": "rollup -c",
+    "build:ember": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app blueprints config lib server test-support tests",
     "start": "ember serve",
     "test": "ember test",
