@@ -1,7 +1,7 @@
 ember-current-url
 ==============================================================================
 
-[Short description of the addon.]
+High Level URL Assertions for [QUnit](https://qunitjs.com/) in [Ember](http://emberjs.com), heavily inspired by [qunit-dom](https://github.com/simplabs/qunit-dom).
 
 Installation
 ------------------------------------------------------------------------------
@@ -10,11 +10,36 @@ Installation
 ember install ember-current-url
 ```
 
+Comming soon... codemod!
 
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+This adds a new function to QUnit `assert` which verifies the current URL.
+
+Query params can be included either as part of the URL or as a hash. Best practice is to use a hash, then adding/modifying query params is much easier and not order dependant! Like string comparison.
+
+```js
+  test('Basic routes', async function(assert) {
+    await visit('/foo');
+    assert.currentUrl('/foo');
+  });
+
+  // Query params function either by using a URL 
+  test('Query params', async function(assert) {
+    await visit('/foo?bar=baz&qux=quux');
+    assert.currentUrl('/foo?bar=baz&qux=quux');
+  });
+
+  // Or a hash
+  test('Query params (hash)', async function(assert) {
+    await visit('/foo?bar=baz&qux=quux');
+    assert.currentUrl(
+        '/foo?bar=baz&qux=quux', 
+        { bar: 'baz', qux: 'quux' }
+    );
+  });
+```
 
 
 Contributing
@@ -25,6 +50,18 @@ Contributing
 * `git clone <repository-url>`
 * `cd ember-current-url`
 * `npm install`
+
+### Building
+
+In general you can just run `npm build` (which runs both the below) however if altering anything in `./lib` you will need to build rollup and rebuild Ember in order to see your changes (it sucks, I know).
+
+#### Rollup build
+
+* `npm run build:dist`
+
+#### Ember Build
+
+* `npm run build:ember`
 
 ### Linting
 
