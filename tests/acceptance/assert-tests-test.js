@@ -25,21 +25,21 @@ module('Acceptance | assert tests', function(hooks) {
     assert.currentUrl('/foo?bar=baz');
   });
 
-  test('Functions for with multiple query params', async function(assert) {
+  test('Functions with multiple query params', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
 
     assert.equal(currentURL(), '/foo?bar=baz&qux=quux');
     assert.currentUrl('/foo?bar=baz&qux=quux');
   });
 
-  test('Functions for with query params hash', async function(assert) {
+  test('Functions for with query params (hash)', async function(assert) {
     await visit('/foo?bar=baz');
 
     assert.equal(currentURL(), '/foo?bar=baz');
     assert.currentUrl('/foo', { bar: 'baz' });
   });
 
-  test('Functions for with multiple query params', async function(assert) {
+  test('Functions with multiple query params (hash)', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
 
     assert.equal(currentURL(), '/foo?bar=baz&qux=quux');
