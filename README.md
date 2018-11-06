@@ -35,8 +35,11 @@ Query params can be included either as part of the URL or as a hash. Best practi
   test('Query params (hash)', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
     assert.currentUrl(
-        '/foo?bar=baz&qux=quux', 
-        { bar: 'baz', qux: 'quux' }
+        '/foo', 
+        { 
+            bar: 'baz', 
+            qux: 'quux' 
+        }
     );
   });
 ```
