@@ -5,12 +5,19 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
   "license": "MIT",
   "author": "",
   "directories": {
     "doc": "doc",
     "test": "tests"
+  },
+  "homepage": "https://github.com/dexturr/ember-current-url",
+  "bugs": {
+    "url": "https://github.com/dexturr/ember-current-url/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dexturr/ember-current-url.git"
   },
   "scripts": {
     "build": "npm run build:dist && npm run build:ember",
