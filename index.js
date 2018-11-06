@@ -12,13 +12,4 @@ module.exports = {
     app.import('vendor/qunit-current-url-dist.js', { type: 'test' });
     app.import('vendor/qunit-current-url-dist.js.map', { type: 'test' });
   },
-
-  treeForVendor(vendorTree) {
-    let qunitPluginTree = new Funnel(`${__dirname}/lib`, {
-      files: ['qunit-current-url-dist.js', 'qunit-current-url-dist.js.map'],
-    });
-
-    return new MergeTrees([vendorTree, qunitPluginTree]);
-  },
-
 };
