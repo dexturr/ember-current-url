@@ -10,7 +10,11 @@ Installation
 ember install ember-current-url
 ```
 
-Comming soon... codemod!
+Then run [this codemod](https://github.com/dexturr/ember-current-url-codemod) in you project directory order to migrate.  To run the codemod:
+
+If you do not have jscodeshift installed globally, then run: `npm i jscodeshift -g`
+
+To perform the transformation run the following command: `jscodeshift -t https://raw.githubusercontent.com/dexturr/ember-current-url-codemod/master/index.js ./tests`
 
 Usage
 ------------------------------------------------------------------------------
