@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+Add codemod back in to README.md (with updated API)
+
 ## 0.1.0
 
 **BREAKING CHANGES**:
