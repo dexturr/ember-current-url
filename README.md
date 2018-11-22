@@ -18,12 +18,12 @@ To perform the transformation run the following command:
 
 `jscodeshift -t https://raw.githubusercontent.com/dexturr/ember-current-url-codemod/master/index.js ./tests` -->
 
-Usage
+API
 ------------------------------------------------------------------------------
 
-This adds a new function to QUnit `assert` which verifies the current URL.
+This adds a new functionality to QUnit `assert` which verifies properties of the current URL. This utaltizes a hash for the query parameters so that tests are not dependant on the order of the query parameters.
 
-Query params can be included either as part of the URL or as a hash. The query parameters are the parsed into a hash and compared instead of being compared like strings, which is order dependant.
+## equals
 
 ```js
   test('Basic routes', async function(assert) {
@@ -47,6 +47,47 @@ Query params can be included either as part of the URL or as a hash. The query p
             qux: 'quux' 
         }
     );
+  });
+```
+
+## incudes
+
+```js
+  test('Includes', async function(assert) {
+    await visit('/foo/bar/baz');
+    assert.currentUrl.includes('bar');
+  });
+```
+
+## doesNotInclude
+
+```js
+  test('Does Not Include', async function(assert) {
+    await visit('/foo/bar/baz');
+    assert.currentUrl.doesNotInclude('qux');
+  });
+```
+
+## hasQueryParameters
+
+```js
+  test('Has query parameters', async function(assert) {
+    await visit('/foo?bar=baz');
+    assert.currentUrl.hasQueryParameters({
+      bar: 'baz'
+    });
+  });
+```
+
+
+## doesNotHaveQueryParameters
+
+```js
+  test('Does not have query parameters functions', async function(assert) {
+    await visit('/foo?bar=baz');
+    assert.currentUrl.doesNotHaveQueryParameters({
+      qux: 'quux'
+    });
   });
 ```
 
