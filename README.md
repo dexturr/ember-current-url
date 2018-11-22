@@ -28,19 +28,19 @@ Query params can be included either as part of the URL or as a hash. Best practi
 ```js
   test('Basic routes', async function(assert) {
     await visit('/foo');
-    assert.currentUrl('/foo');
+    assert.currentUrl.equals('/foo');
   });
 
   // Query params function either by using a URL 
   test('Query params', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
-    assert.currentUrl('/foo?bar=baz&qux=quux');
+    assert.currentUrl.equals('/foo?bar=baz&qux=quux');
   });
 
   // Or a hash
   test('Query params (hash)', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
-    assert.currentUrl(
+    assert.currentUrl.equals(
         '/foo', 
         { 
             bar: 'baz', 
