@@ -23,7 +23,7 @@ Usage
 
 This adds a new function to QUnit `assert` which verifies the current URL.
 
-Query params can be included either as part of the URL or as a hash. Best practice is to use a hash, then adding/modifying query params is much easier and not order dependant! Like string comparison.
+Query params can be included either as part of the URL or as a hash. The query parameters are the parsed into a hash and compared instead of being compared like strings, which is order dependant.
 
 ```js
   test('Basic routes', async function(assert) {
