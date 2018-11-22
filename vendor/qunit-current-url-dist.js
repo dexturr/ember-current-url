@@ -39,7 +39,6 @@
     throw new TypeError("Invalid attempt to destructure non-iterable instance");
   }
 
-  /* eslint-disable no-undef */
   function extraUrlInfo(urlString) {
     var _urlString$split = urlString.split('?'),
         _urlString$split2 = _slicedToArray(_urlString$split, 2),
@@ -66,22 +65,30 @@
     };
   }
 
-  function equals(expectedUrl, expectedQueryParams) {
+  function getUrlInfo(expectedUrl) {
     var _require = require('@ember/test-helpers'),
         currentURL = _require.currentURL;
 
     var currentUrlString = currentURL();
     var currentUrlInfo = extraUrlInfo(currentUrlString);
+    var expectedUrlInfo = extraUrlInfo(expectedUrl);
+    return {
+      currentUrlInfo: currentUrlInfo,
+      expectedUrlInfo: expectedUrlInfo
+    };
+  }
+
+  function equals(expectedUrl, expectedQueryParams) {
+    var _getUrlInfo = getUrlInfo(expectedUrl),
+        currentUrlInfo = _getUrlInfo.currentUrlInfo,
+        expectedUrlInfo = _getUrlInfo.expectedUrlInfo;
 
     if (expectedQueryParams) {
-      var expectedUrlInfo = extraUrlInfo(expectedUrl);
       QUnit.assert.equal(currentUrlInfo.baseUrl, expectedUrlInfo.baseUrl, 'Expected base URL to be the same');
       QUnit.assert.deepEqual(currentUrlInfo.queryParameters, expectedQueryParams, 'Expected query parameters to be the same');
     } else {
-      var _expectedUrlInfo = extraUrlInfo(expectedUrl);
-
-      QUnit.assert.equal(currentUrlInfo.baseUrl, _expectedUrlInfo.baseUrl, 'Expected base URL to be the same');
-      QUnit.assert.deepEqual(currentUrlInfo.queryParameters, _expectedUrlInfo.queryParameters, 'Expected query parameters to be the same');
+      QUnit.assert.equal(currentUrlInfo.baseUrl, expectedUrlInfo.baseUrl, 'Expected base URL to be the same');
+      QUnit.assert.deepEqual(currentUrlInfo.queryParameters, expectedUrlInfo.queryParameters, 'Expected query parameters to be the same');
     }
   }
 
