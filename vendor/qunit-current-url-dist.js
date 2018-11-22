@@ -113,15 +113,14 @@
 
   function doesNotInclude(urlPart) {
     var currentUrlInfo = getCurrentUrlInfo();
-    QUnit.assert.notOk(currentUrlInfo.baseUrl.includes(urlPart), "Expected base URL to include ".concat(urlPart));
+    QUnit.assert.notOk(currentUrlInfo.baseUrl.includes(urlPart), "Expected base URL to not include ".concat(urlPart));
   }
 
   function doesNotHaveQueryParameters(queryParameters) {
     var currentUrlInfo = getCurrentUrlInfo();
 
     for (var key in queryParameters) {
-      QUnit.assert.notOk(currentUrlInfo.queryParameters.hasOwnProperty(key), "Expected query parameter ".concat(key, " to be present"));
-      QUnit.assert.notEqual(currentUrlInfo.queryParameters[key], queryParameters[key], 'Expected query parameters to be the same');
+      QUnit.assert.notOk(currentUrlInfo.queryParameters.hasOwnProperty(key), "Expected query parameter ".concat(key, " to not be present"));
     }
   }
 
