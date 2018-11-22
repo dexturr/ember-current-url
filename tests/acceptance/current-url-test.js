@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | assert tests', function(hooks) {
+module('Acceptance | current url', function(hooks) {
   setupApplicationTest(hooks);
 
   test('We have a catch all route', async function(assert) {
@@ -55,6 +55,18 @@ module('Acceptance | assert tests', function(hooks) {
     await visit('/foo?bar=baz');
     assert.currentUrl.hasQueryParameters({
       bar: 'baz'
+    });
+  });
+
+  test('Does Not Include functions', async function(assert) {
+    await visit('/foo/bar/baz');
+    assert.currentUrl.doesNotInclude('qux');
+  });
+
+  test('Does not have query parameters functions', async function(assert) {
+    await visit('/foo?bar=baz');
+    assert.currentUrl.doesNotHaveQueryParameters({
+      qux: 'quux'
     });
   });
 });
