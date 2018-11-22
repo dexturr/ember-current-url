@@ -65,12 +65,17 @@
     };
   }
 
-  function getUrlInfo(expectedUrl) {
+  function getCurrentUrlInfo() {
     var _require = require('@ember/test-helpers'),
         currentURL = _require.currentURL;
 
     var currentUrlString = currentURL();
     var currentUrlInfo = extraUrlInfo(currentUrlString);
+    return currentUrlInfo;
+  }
+
+  function getUrlInfo(expectedUrl) {
+    var currentUrlInfo = getCurrentUrlInfo();
     var expectedUrlInfo = extraUrlInfo(expectedUrl);
     return {
       currentUrlInfo: currentUrlInfo,
@@ -92,9 +97,25 @@
     }
   }
 
+  function includes(urlPart) {
+    var currentUrlInfo = getCurrentUrlInfo();
+    QUnit.assert.ok(currentUrlInfo.baseUrl.includes(urlPart), "Expected base URL to include ".concat(urlPart));
+  }
+
+  function hasQueryParameters(queryParameters) {
+    var currentUrlInfo = getCurrentUrlInfo();
+
+    for (var key in queryParameters) {
+      QUnit.assert.ok(currentUrlInfo.queryParameters.hasOwnProperty(key), "Expected query parameter ".concat(key, " to be present"));
+      QUnit.assert.equal(currentUrlInfo.queryParameters[key], queryParameters[key], 'Expected query parameters to be the same');
+    }
+  }
+
   function setupCurrenUrlAssert() {
     QUnit.assert.currentUrl = {
-      equals: equals
+      equals: equals,
+      includes: includes,
+      hasQueryParameters: hasQueryParameters
     };
   } // Load on next tick becuase dummy addon doesn't load qunit until later.
   // Don't need to do this in normal apps annoyingly
