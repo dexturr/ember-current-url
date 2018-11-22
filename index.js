@@ -1,8 +1,5 @@
 'use strict';
 
-const Funnel = require('broccoli-funnel');
-const MergeTrees = require('broccoli-merge-trees');
-
 module.exports = {
   name: 'ember-current-url',
 

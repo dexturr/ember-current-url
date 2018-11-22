@@ -1,7 +1,7 @@
 import babel from 'rollup-plugin-babel';
 
 export default {
-  input: 'vendor/qunit-current-url.js',
+  input: 'lib/qunit-current-url.js',
   plugins: [
     babel({
       exclude: 'node_modules/**',
@@ -10,7 +10,7 @@ export default {
     })
   ],
   output: {
-    file: 'lib/qunit-current-url-dist.js',
+    file: 'vendor/qunit-current-url-dist.js',
     format: 'iife',
     sourcemap: true,
   },

@@ -66,44 +66,28 @@
     };
   }
 
-  function objectToString(object) {
-    var keyValueStrings = Object.keys(object).sort(function (a, b) {
-      var left = a.toLowerCase();
-      var right = b.toLowerCase();
+  function equals(expectedUrl, expectedQueryParams) {
+    var _require = require('@ember/test-helpers'),
+        currentURL = _require.currentURL;
 
-      if (left < right) {
-        return -1;
-      }
+    var currentUrlString = currentURL();
+    var currentUrlInfo = extraUrlInfo(currentUrlString);
 
-      if (left > right) {
-        return 1;
-      }
+    if (expectedQueryParams) {
+      var expectedUrlInfo = extraUrlInfo(expectedUrl);
+      QUnit.assert.equal(currentUrlInfo.baseUrl, expectedUrlInfo.baseUrl, 'Expected base URL to be the same');
+      QUnit.assert.deepEqual(currentUrlInfo.queryParameters, expectedQueryParams, 'Expected query parameters to be the same');
+    } else {
+      var _expectedUrlInfo = extraUrlInfo(expectedUrl);
 
-      return 0;
-    }).map(function (key) {
-      return "".concat(key, "=").concat(object[key]);
-    }).join('&');
-    return "?".concat(keyValueStrings);
+      QUnit.assert.equal(currentUrlInfo.baseUrl, _expectedUrlInfo.baseUrl, 'Expected base URL to be the same');
+      QUnit.assert.deepEqual(currentUrlInfo.queryParameters, _expectedUrlInfo.queryParameters, 'Expected query parameters to be the same');
+    }
   }
 
   function setupCurrenUrlAssert() {
-    QUnit.assert.currentUrl = function (expectedUrl, expectedQueryParams) {
-      var _require = require('@ember/test-helpers'),
-          currentURL = _require.currentURL;
-
-      var currentUrlString = currentURL();
-      var currentUrlInfo = extraUrlInfo(currentUrlString);
-
-      if (expectedQueryParams) {
-        var expectedUrlInfo = extraUrlInfo(expectedUrl);
-        QUnit.assert.equal(currentUrlInfo.baseUrl, expectedUrlInfo.baseUrl, 'Expected base URL to be the same');
-        QUnit.assert.deepEqual(currentUrlInfo.queryParameters, expectedQueryParams, 'Expected query parameters to be the same');
-      } else {
-        var _expectedUrlInfo = extraUrlInfo(expectedUrl);
-
-        QUnit.assert.equal(currentUrlInfo.baseUrl, _expectedUrlInfo.baseUrl, 'Expected base URL to be the same');
-        QUnit.assert.equal(objectToString(currentUrlInfo.queryParameters), objectToString(_expectedUrlInfo.queryParameters), 'Expected query parameters to be the same');
-      }
+    QUnit.assert.currentUrl = {
+      equals: equals
     };
   } // Load on next tick becuase dummy addon doesn't load qunit until later.
   // Don't need to do this in normal apps annoyingly

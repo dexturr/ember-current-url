@@ -15,34 +15,34 @@ module('Acceptance | assert tests', function(hooks) {
     await visit('/foo');
 
     assert.equal(currentURL(), '/foo');
-    assert.currentUrl('/foo');
+    assert.currentUrl.equals('/foo');
   });
 
   test('Functions for with query params', async function(assert) {
     await visit('/foo?bar=baz');
 
     assert.equal(currentURL(), '/foo?bar=baz');
-    assert.currentUrl('/foo?bar=baz');
+    assert.currentUrl.equals('/foo?bar=baz');
   });
 
   test('Functions with multiple query params', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
 
     assert.equal(currentURL(), '/foo?bar=baz&qux=quux');
-    assert.currentUrl('/foo?bar=baz&qux=quux');
+    assert.currentUrl.equals('/foo?bar=baz&qux=quux');
   });
 
   test('Functions for with query params (hash)', async function(assert) {
     await visit('/foo?bar=baz');
 
     assert.equal(currentURL(), '/foo?bar=baz');
-    assert.currentUrl('/foo', { bar: 'baz' });
+    assert.currentUrl.equals('/foo', { bar: 'baz' });
   });
 
   test('Functions with multiple query params (hash)', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
 
     assert.equal(currentURL(), '/foo?bar=baz&qux=quux');
-    assert.currentUrl('/foo?bar=baz&qux=quux', { bar: 'baz', qux: 'quux' });
+    assert.currentUrl.equals('/foo?bar=baz&qux=quux', { bar: 'baz', qux: 'quux' });
   });
 });

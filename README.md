@@ -6,7 +6,7 @@ High Level URL Assertions for [QUnit](https://qunitjs.com/) in [Ember](http://em
 Installation
 ------------------------------------------------------------------------------
 
-```
+<!-- ```
 ember install ember-current-url
 ```
 
@@ -16,7 +16,7 @@ If you do not have jscodeshift installed globally, then run: `npm i jscodeshift 
 
 To perform the transformation run the following command: 
 
-`jscodeshift -t https://raw.githubusercontent.com/dexturr/ember-current-url-codemod/master/index.js ./tests`
+`jscodeshift -t https://raw.githubusercontent.com/dexturr/ember-current-url-codemod/master/index.js ./tests` -->
 
 Usage
 ------------------------------------------------------------------------------
