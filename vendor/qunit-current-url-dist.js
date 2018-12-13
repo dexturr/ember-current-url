@@ -125,7 +125,7 @@
   }
 
   function setupCurrenUrlAssert() {
-    QUnit.assert.currentUrl = {
+    QUnit.assert.currentUrl = QUnit.assert.url = {
       equals: equals,
       includes: includes,
       hasQueryParameters: hasQueryParameters,
