@@ -28,19 +28,19 @@ This adds a new functionality to QUnit `assert` which verifies properties of the
 ```js
   test('Basic routes', async function(assert) {
     await visit('/foo');
-    assert.currentUrl.equals('/foo');
+    assert.url.equals('/foo');
   });
 
   // Query params function either by using a URL 
   test('Query params', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
-    assert.currentUrl.equals('/foo?bar=baz&qux=quux');
+    assert.url.equals('/foo?bar=baz&qux=quux');
   });
 
   // Or a hash
   test('Query params (hash)', async function(assert) {
     await visit('/foo?bar=baz&qux=quux');
-    assert.currentUrl.equals(
+    assert.url.equals(
         '/foo', 
         { 
             bar: 'baz', 
@@ -55,7 +55,7 @@ This adds a new functionality to QUnit `assert` which verifies properties of the
 ```js
   test('Includes', async function(assert) {
     await visit('/foo/bar/baz');
-    assert.currentUrl.includes('bar');
+    assert.url.includes('bar');
   });
 ```
 
@@ -64,7 +64,7 @@ This adds a new functionality to QUnit `assert` which verifies properties of the
 ```js
   test('Does Not Include', async function(assert) {
     await visit('/foo/bar/baz');
-    assert.currentUrl.doesNotInclude('qux');
+    assert.url.doesNotInclude('qux');
   });
 ```
 
@@ -73,7 +73,7 @@ This adds a new functionality to QUnit `assert` which verifies properties of the
 ```js
   test('Has query parameters', async function(assert) {
     await visit('/foo?bar=baz');
-    assert.currentUrl.hasQueryParameters({
+    assert.url.hasQueryParameters({
       bar: 'baz'
     });
   });
@@ -85,12 +85,15 @@ This adds a new functionality to QUnit `assert` which verifies properties of the
 ```js
   test('Does not have query parameters functions', async function(assert) {
     await visit('/foo?bar=baz');
-    assert.currentUrl.doesNotHaveQueryParameters({
+    assert.url.doesNotHaveQueryParameters({
       qux: 'quux'
     });
   });
 ```
 
+### Legacy
+
+Previously `assert.url` was `assert.currentUrl`. Both are still supported and work as expected.
 
 Contributing
 ------------------------------------------------------------------------------

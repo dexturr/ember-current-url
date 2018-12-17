@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+New feature:
+    - Change `assert.currentUrl` to be `assert.url`
+
+
 ## 0.1.1
 
 Add codemod back in to README.md (with updated API)
